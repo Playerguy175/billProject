@@ -128,15 +128,15 @@ function love.run()
 
     -- Main loop time.
     return function()
-        -- time shit
-        if love.timer then dt = love.timer.step() end
-
         if not start then
             if intro() then
                 start = true
             end
             return
         end
+        
+        -- time shit
+        if love.timer then dt = love.timer.step() end
 
         --start draw
         if love.graphics and love.graphics.isActive() then

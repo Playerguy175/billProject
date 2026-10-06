@@ -35,7 +35,7 @@ return function()
 	tim = tim + dt
 	if tim < 2 then
 		love.graphics.setColor(1,1,1,tim-1)
-	else
+	elseif tim < 4 then
 		love.graphics.setColor(1,1,1,4-tim)
 	end
 	love.graphics.draw(intI,w/2,h/2,0,scale,scale,64,64)
@@ -49,7 +49,9 @@ return function()
 	--limit tps
 	if love.timer then love.timer.sleep(0.001) end
 
-	if tim > 4 then
+	if tim > 4.5 then
+		love.graphics.setColor(1,1,1,1)
 		return true
 	end
+	return false
 end
