@@ -1,3 +1,5 @@
+--an old project of mine to make making games on love2d easier
+
 local ticks = {}
 function love.tick(func)
     ticks[#ticks+1] = func
