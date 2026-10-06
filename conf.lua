@@ -1,3 +1,3 @@
-function love.conf(t)
-    t.window.fullscreen = true
-end
+-- function love.conf(t)
+--     t.window.fullscreen = true
+-- end

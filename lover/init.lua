@@ -1,5 +1,8 @@
 --an old project of mine to make making games on love2d easier
 
+love.window.setFullscreen(true)
+love.graphics.setDefaultFilter("nearest","nearest")
+
 local ticks = {}
 function love.tick(func)
     ticks[#ticks+1] = func
@@ -63,52 +66,6 @@ love.width,love.height = love.graphics.getWidth(),love.graphics.getHeight()
 
 love.random = love.math.random
 
-function love.run()
-
-	-- We don't want the first frame's dt to include time taken by love.load.
-	if love.timer then love.timer.step() end
-
-	local dt = 0
-
-	-- Main loop time.
-	return function()
-		-- time shit
-		if love.timer then dt = love.timer.step() end
-
-        --start draw
-		if love.graphics and love.graphics.isActive() then
-			love.graphics.origin()
-			love.graphics.clear(love.graphics.getBackgroundColor())
-        end
-
-        --cannon event
-		if love.event then
-			love.event.pump()
-			for name, a,b,c,d,e,f in love.event.poll() do
-				if name == "quit" then
-					if not love.quit or not love.quit() then
-						return a or 0
-					end
-				end
-                love.handlers[name](a,b,c,d,e,f)
-			end
-		end
-
-        --its tick'n time
-        for v,o in ipairs(ticks) do
-            o(dt)
-        end
-
-        --end draw
-        if love.graphics and love.graphics.isActive() then
-			love.graphics.present()
-		end
-
-        --limit tps
-		if love.timer then love.timer.sleep(0.001) end
-	end
-end
-
 table.rom = function (self)
     local key = {}
     setmetatable(key,{
@@ -157,6 +114,62 @@ math.clip = function (x,l)
         return -l
     end
     return x
+end
+
+local intro = require("lover.intro")
+
+local start = false
+function love.run()
+
+    -- We don't want the first frame's dt to include time taken by love.load.
+    if love.timer then love.timer.step() end
+
+    local dt = 0
+
+    -- Main loop time.
+    return function()
+        -- time shit
+        if love.timer then dt = love.timer.step() end
+
+        if not start then
+            if intro() then
+                start = true
+            end
+            return
+        end
+
+        --start draw
+        if love.graphics and love.graphics.isActive() then
+            love.graphics.origin()
+            love.graphics.clear(love.graphics.getBackgroundColor())
+        end
+
+        --cannon event
+        if love.event then
+            love.event.pump()
+            for name, a,b,c,d,e,f in love.event.poll() do
+                if name == "quit" then
+                    if not love.quit or not love.quit() then
+                        return a or 0
+                    end
+                end
+                love.handlers[name](a,b,c,d,e,f)
+            end
+        end
+
+        --its tick'n time
+        for v,o in ipairs(ticks) do
+            o(dt)
+        end
+
+        --end draw
+        if love.graphics and love.graphics.isActive() then
+            love.graphics.present()
+        end
+
+        --limit tps
+        if love.timer then love.timer.sleep(0.001) end
+    end
 end
 
 setmetatable(love,{
