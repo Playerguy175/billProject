@@ -4,6 +4,7 @@ local intI = love.graphics.newImage("lover/nickco.png")
 love.timer.step()
 local dt = 0
 
+local sound = love.audio.newSource("lover/whoosh.mp3","static")
 -- Main loop time.
 return function()
 	-- time shit
@@ -33,6 +34,12 @@ return function()
 
 	--draw intro
 	tim = tim + dt
+
+	if sound and tim > 1.2 then
+		sound:play()
+		sound = nil
+	end
+
 	if tim < 2 then
 		love.graphics.setColor(1,1,1,tim-1)
 	elseif tim < 4 then
@@ -50,7 +57,6 @@ return function()
 	if love.timer then love.timer.sleep(0.001) end
 
 	if tim > 4.5 then
-		love.graphics.setColor(1,1,1,1)
 		return true
 	end
 	return false

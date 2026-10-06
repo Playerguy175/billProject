@@ -131,6 +131,7 @@ function love.run()
         if not start then
             if intro() then
                 start = true
+                love.graphics.setColor(1,1,1,1)
             end
             return
         end
