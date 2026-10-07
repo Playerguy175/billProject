@@ -5,6 +5,7 @@ local function updateSize()
     canv = love.graphics.newCanvas(wid,hei)
     box:setWidth(wid)
     local font = love.graphics.newFont("lover/SpaceMono-Regular.ttf",hei*.6)
+    love.mainFont = font
     box:setFont(font)
     love.graphics.setFont(font)
 end
@@ -15,7 +16,7 @@ local t = {
         updateSize()
     end},
     ["height"] = {50,function (new)
-        updateSize()
+        error("no lol")
     end},
     ["x"] = {200,function (new) end},
     ["y"] = {250,function (new) end},

@@ -2,8 +2,8 @@ local t = 0
 love.timer.getTime()
 
 local year = os.date("%Y")+love.math.random(4,24)
-local houseRep = love.math.random(0,100)
-local senateRep = love.math.random(0,100)
+local houseRep = love.math.random(10,90)
+local senateRep = love.math.random(10,90)
 local president = love.math.random(0,1)==1 and "Republican" or "Democrat"
 
 local txt = [[
@@ -32,12 +32,14 @@ return {function (dt,all)
     end
     love.graphics.print(cur,10,10)
     if t > #txt/24 then
-        return "mainmenu"
+        return "billcreation"
     end
 end,function (key,down)
     if down then
         if key == "escape" then
             return "mainmenu"
+        elseif key == "return" then
+            t = t + 3
         end
     end
 end}

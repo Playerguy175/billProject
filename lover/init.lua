@@ -173,6 +173,16 @@ function love.run()
     end
 end
 
+local txt = love.graphics.newText(love.mainFont)
+string.width = function (str)
+    txt:set(str)
+    return txt:getWidth()
+end
+string.height = function (str)
+    txt:set(str)
+    return txt:getHeight()
+end
+
 setmetatable(love,{
     ["__newindex"] = function(t,v,o)
         error("tried to edit love!")
