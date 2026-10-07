@@ -1,69 +1,43 @@
-local x = 0
+local t = 0
+love.timer.getTime()
 
-local newTree
-newTree = function (title,_par)
-    local o = {}
+local year = os.date("%Y")+love.math.random(4,24)
+local houseRep = love.math.random(0,100)
+local senateRep = love.math.random(0,100)
+local president = love.math.random(0,1)==1 and "Republican" or "Democrat"
 
-    local ch = {}
-    local Fu = {}
+local txt = [[
+The year is ]]..year..[[.|||||||||||||||||| The country is in shambles.|||||||||||||||||| You have an idea for a bill to change the world.||||||||||||||||||
 
-    Fu.add = function (title)
-        local c = newTree(title,o)
-        ch[#ch+1] = c
-        return c
-    end
+The current president is a ]]..president..[[.||||||||||||||||||
+The House is ]]..(houseRep > 50 and houseRep.."% Republican" or (100-houseRep).."% Democrat")..[[.||||||||||||||||||
+The Senate is ]]..(senateRep > 50 and senateRep.."% Republican" or (100-senateRep).."% Democrat")..[[.||||||||||||||||||
 
-    Fu.pairs = function ()
-        return pairs(ch)
-    end
+Good luck.||||||||||||||||||
+]]
 
-    Fu.len = function ()
-        return #ch
-    end
+local lastLen = 0
+return {function (dt,all)
+    all.year = year
+    all.houseRep = houseRep
+    all.senateRep = senateRep
+    all.president = president
 
-    Fu.get = function (i)
-        return ch[i]
-    end
-
-    return setmetatable(o,{
-        ["__index"] = function(t,v)
-            local fu = Fu[v]
-            if fu then
-                return fu
-            end
-            return ch[v]
-        end,
-        ["__tostring"] = function(t)
-            return "T:"..title
-        end
-    })
-end
-
-local i = 1
-
-local root = newTree("Choose your party!")
-root.add("Democrat")
-root.add("Republican")
-
-return {function (dt)
+    t = t + dt
     love.graphics.setColor(1,1,1)
-    love.graphics.print("[name]",10,10,0,1.5,1.5)
-    for v,o in pairs(op) do
-        if v == i then
-            love.graphics.setColor(1,1,1)
-        else
-            love.graphics.setColor(0.5,0.5,0.5)
-        end
-        love.graphics.print(o[1],10,60+v*30)
+    local cur = string.gsub(string.sub(txt,1,math.floor(t*24)),"|","")
+    if #cur > lastLen then
+        love.beep()
+        lastLen = #cur
+    end
+    love.graphics.print(cur,10,10)
+    if t > #txt/24 then
+        return "mainmenu"
     end
 end,function (key,down)
     if down then
-        if key == "down" or key == "s" then
-            i = i%root.len()+1
-        elseif key == "up" or key == "w" then
-            i = (i-2)%root.len()+1
-        elseif key == "space" or key == "return" then
-            root = root.get(i)
+        if key == "escape" then
+            return "mainmenu"
         end
     end
 end}
