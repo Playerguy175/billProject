@@ -21,9 +21,12 @@ end,function (key,down)
     if down then
         if key == "down" or key == "s" then
             i = i%#op+1
+            love.beep()
         elseif key == "up" or key == "w" then
             i = (i-2)%#op+1
+            love.beep()
         elseif key == "space" or key == "return" then
+            love.beep()
             return op[i][2]
         end
     end
