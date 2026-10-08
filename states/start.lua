@@ -7,7 +7,8 @@ local senateRep = love.math.random(10,90)
 local president = love.math.random(0,1)==1 and "Republican" or "Democrat"
 
 local txt = [[
-The year is ]]..year..[[.|||||||||||||||||| The country is in shambles.|||||||||||||||||| You have an idea for a bill to change the world.||||||||||||||||||
+The year is ]]..year..[[.|||||||||||||||||| The country is in shambles.||||||||||||||||||
+You have an idea for a bill to change the world.||||||||||||||||||
 
 The current president is a ]]..president..[[.||||||||||||||||||
 The House is ]]..(houseRep > 50 and houseRep.."% Republican" or (100-houseRep).."% Democrat")..[[.||||||||||||||||||
@@ -22,6 +23,7 @@ return {function (dt,all)
     all.houseRep = houseRep
     all.senateRep = senateRep
     all.president = president
+    all.text = txt
 
     t = t + dt
     love.graphics.setColor(1,1,1)
