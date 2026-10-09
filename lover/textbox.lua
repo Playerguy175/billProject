@@ -15,7 +15,7 @@ local t = {
     ["width"] = {400,function (new)
         updateSize()
     end},
-    ["height"] = {50,function (new)
+    ["height"] = {love.height/48,function (new)
         error("no lol")
     end},
     ["x"] = {200,function (new) end},

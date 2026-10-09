@@ -23,7 +23,6 @@ return {function (dt,all)
     all.houseRep = houseRep
     all.senateRep = senateRep
     all.president = president
-    all.text = txt
 
     t = t + dt
     love.graphics.setColor(1,1,1)

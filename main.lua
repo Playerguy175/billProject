@@ -35,5 +35,6 @@ end)
 
 love.tick(function (dt)
     love.graphics.setColor(1,1,1,0.5)
-    love.graphics.print("a (bad) nick production",love.width-215,love.height-25,0,0.5,0.5)
+    local sx,sy = string.size("a (bad) nick production")
+    love.graphics.print("a (bad) nick production",love.width,love.height)
 end)

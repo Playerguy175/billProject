@@ -173,15 +173,16 @@ function love.run()
     end
 end
 
-local txt = love.graphics.newText(love.mainFont)
-string.width = function (str)
-    txt:set(str)
-    return txt:getWidth()
+string.size = function(str)
+    local w,h = 0,0
+    for v in string.gmatch(str.."\n","([^\n]*)\n") do
+        w = math.max(w, #v)
+        h = h + 1
+    end
+    return w*love.textbox.height*.366,h*love.textbox.height
 end
-string.height = function (str)
-    txt:set(str)
-    return txt:getHeight()
-end
+
+
 
 setmetatable(love,{
     ["__newindex"] = function(t,v,o)

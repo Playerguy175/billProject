@@ -7,15 +7,18 @@ op[3] = {"Exit","end"}
 local i = 1
 
 return {function (dt)
+    local y = 10
     love.graphics.setColor(1,1,1)
-    love.graphics.print("[name]",10,10,0,1.5,1.5)
+    love.graphics.print("[name]",10,y,0,1.5,1.5)
+    y = y + 1.5*love.textbox.height
     for v,o in pairs(op) do
         if v == i then
             love.graphics.setColor(1,1,1)
         else
             love.graphics.setColor(0.5,0.5,0.5)
         end
-        love.graphics.print(o[1],10,60+v*30)
+        love.graphics.print(o[1],10,y)
+        y = y + 1*love.textbox.height
     end
 end,function (key,down)
     if down then
