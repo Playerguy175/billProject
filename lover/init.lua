@@ -182,6 +182,11 @@ string.size = function(str)
     return w*love.textbox.height*.366,h*love.textbox.height
 end
 
+love.graphics.printCentered = function (str,x,y)
+    local w,h = string.size(str)
+    love.graphics.print(str,x-w/2,y-h/2)
+end
+
 
 
 setmetatable(love,{

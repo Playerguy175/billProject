@@ -26,6 +26,7 @@ local function ret(nS)
 end
 
 love.tick(function (dt)
+    love.graphics.setColor(1,1,1,1)
     ret(require("states/"..state)[1](dt,all))
 end)
 
