@@ -7,6 +7,9 @@ local tim = 0
 local deg = 1.57
 local tar = nil
 local speed = 1
+
+local oneP = love.math.random(1,9)
+
 return {function (dt,_all)
     all = _all
     tim = tim + dt
@@ -37,7 +40,7 @@ return {function (dt,_all)
             love.graphics.setColor(1,1,1,4-tim)
         end
         love.graphics.printCentered("Convince the Counsil!",love.width/2,love.height/2,2,2)
-    else
+    elseif tim < 90 then
         deg = (deg + dt*speed)%(math.pi*2)
 
         if tar == nil then
@@ -47,15 +50,39 @@ return {function (dt,_all)
         local dis = love.width*5/36
         love.graphics.circle("line",love.width/2,love.height/2,love.width/9)
         love.graphics.circle("line",love.width/2,love.height/2,love.width/6)
+        love.graphics.arc("fill",love.width/2,love.height/2,love.width/80,-1.57,-1.57+2*math.pi*(1-(tim-5)/85),100)
+
         love.graphics.circle("line",love.width/2+dis*math.cos(deg),love.height/2-dis*math.sin(deg),love.width/80)
         if math.abs(tar-deg) < .20 then
             love.graphics.setColor(1,1,0)
         end
         love.graphics.circle("fill",love.width/2+dis*math.cos(tar),love.height/2-dis*math.sin(tar),love.width/80)
+    elseif tim < 93 then
+        love.graphics.setColor(1,1,1,tim-91)
+        local amt = oneP
+        for v,o in pairs(aud) do
+            if o[2] > 50 then
+                amt = amt + 10
+            end
+        end
+        love.graphics.printCentered(amt.."% "..(amt > 50 and ":)" or ":("),love.width/2,love.height/2,2,2)
+    else
+        local amt = oneP
+        for v,o in pairs(aud) do
+            if o[2] > 50 then
+                amt = amt + 10
+            end
+        end
+        if amt > 50 then
+            return "house/start"
+        else
+            return "mainmenu"
+        end
+        
     end
 
     for v,o in pairs(aud) do
-        if tim > 5 then
+        if tim > 5 and tim < 90 then
             o[2] = o[2] / 1.03^dt
         end
         o[6] = (o[6] + dt)%1
@@ -79,7 +106,7 @@ return {function (dt,_all)
         end
     end
 end,function (key,down)
-    if down and key == "space" or key == "return" then
+    if down and tim > 5 and tim < 90 and (key == "space" or key == "return") then
         speed = -speed
         if math.abs(tar-deg) < .20 then
             speed = speed + math.sign(speed)*.1
