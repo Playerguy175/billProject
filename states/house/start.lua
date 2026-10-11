@@ -10,9 +10,9 @@ return {function (dt,_all)
     if tim < 2 then
         love.graphics.setColor(1,1,1,tim)
     else
-        love.graphics.setColor(1,1,1,2-tim)
+        love.graphics.setColor(1,1,1,3-tim)
     end
-    if tim > 3 then
+    if tim > 3.5 then
         if all.stat == nil then
             all.stat = 1
         elseif all.stat < 4 then
@@ -23,10 +23,10 @@ return {function (dt,_all)
         return "house/"..string.lower(dir[all.stat])
     end
 
-    love.graphics.printCentered(dir[1],love.width/2,love.height/2-love.width*3/16)
-    love.graphics.printCentered(dir[2],love.width/2,love.height/2-love.width/16)
-    love.graphics.printCentered(dir[3],love.width/2,love.height/2+love.width/16)
-    love.graphics.printCentered(dir[4],love.width/2,love.height/2+love.width*3/16)
+    love.graphics.printCentered(dir[1],love.width/2,love.height/2-love.width*3/16,2,2)
+    love.graphics.printCentered(dir[2],love.width/2,love.height/2-love.width/16,2,2)
+    love.graphics.printCentered(dir[3],love.width/2,love.height/2+love.width/16,2,2)
+    love.graphics.printCentered(dir[4],love.width/2,love.height/2+love.width*3/16,2,2)
 
     love.graphics.draw(arr,love.width/2,love.height/2 - love.width/8,0,love.height/1000,love.height/1000,arr:getWidth()/2,arr:getHeight()/2)
     love.graphics.draw(arr,love.width/2,love.height/2,0,love.height/1000,love.height/1000,arr:getWidth()/2,arr:getHeight()/2)

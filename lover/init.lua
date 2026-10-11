@@ -182,9 +182,15 @@ string.size = function(str)
     return w*love.textbox.height*.366,h*love.textbox.height
 end
 
-love.graphics.printCentered = function (str,x,y)
+love.graphics.printCentered = function (str,x,y,sx,sy)
     local w,h = string.size(str)
-    love.graphics.print(str,x-w/2,y-h/2)
+    if sx and sy then
+        love.graphics.print(str,x-sx*w/2,y-sy*h/2,0,sx,sy)
+    elseif sx then
+        love.graphics.print(str,x-sx*w/2,y-h/2,0,sx)
+    else
+        love.graphics.print(str,x-w/2,y-h/2)
+    end
 end
 
 
