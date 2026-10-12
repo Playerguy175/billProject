@@ -6,6 +6,7 @@ local dir = {"Committee","Floor","Vote"}
 
 return {function (dt,_all)
     all = _all
+    all.house = true
     tim = tim + dt
     if tim < 2 then
         love.graphics.setColor(1,1,1,tim)
@@ -18,7 +19,7 @@ return {function (dt,_all)
         elseif all.stat < 4 then
             all.stat = all.stat + 1
         else
-            return "AHHHHH WHERE DO I GO OH GOD AHHH"
+            return "mainmenu"
         end
         return "house/"..string.lower(dir[all.stat])
     end

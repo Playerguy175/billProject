@@ -37,7 +37,7 @@ return {function (dt,_all)
         else
             love.graphics.setColor(1,1,1,4-tim)
         end
-        love.graphics.printCentered("Convince the Counsil!",love.width/2,love.height/2,2,2)
+        love.graphics.printCentered("Convince the House!",love.width/2,love.height/2,2,2)
     elseif tim < 90 then
         deg = (deg + dt*speed)%(math.pi*2)
 
@@ -74,7 +74,7 @@ return {function (dt,_all)
         if amt >= 5 then
             return "house/start"
         else
-            return "mainmenu"
+            return "lose"
         end
         
     end

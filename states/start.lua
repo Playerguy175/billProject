@@ -24,6 +24,10 @@ return {function (dt,all)
     all.senateRep = senateRep
     all.president = president
 
+    all.house = false
+    all.senate = false
+    all.stat = nil
+
     t = t + dt
     love.graphics.setColor(1,1,1)
     local cur = string.gsub(string.sub(txt,1,math.floor(t*24)),"|","")
