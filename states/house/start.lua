@@ -2,7 +2,7 @@ local all = nil
 local tim = 0
 
 local arr = love.graphics.newImage("arrow.png")
-local dir = {"Committee","Floor","Vote"}
+local dir = {"House Committee","House Floor","House Vote"}
 
 return {function (dt,_all)
     all = _all
@@ -21,7 +21,7 @@ return {function (dt,_all)
         else
             return "mainmenu"
         end
-        return "house/"..string.lower(dir[all.stat])
+        return "house/"..string.sub(string.lower(dir[all.stat]),7)
     end
 
     love.graphics.printCentered(dir[1],love.width/2,love.height/2-love.width*3/16,2,2)

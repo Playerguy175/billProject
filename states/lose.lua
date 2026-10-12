@@ -20,7 +20,12 @@ return {function (dt,_all)
     love.graphics.setColor(1,1,1,tim-1.5)
     love.graphics.draw(no,love.width/1.84,love.height/3.4,0,love.width/400,love.width/400,8,14)
 
-    if tim > 4.5 then
+    if tim > 5.5 then
+        love.graphics.setColor(1,1,1,tim-5.5)
+        love.graphics.printCentered("Tough Luck, Try Again!",love.width/2,love.height/1.2,2,2)
+    end
+
+    if tim > 8 then
         return "mainmenu"
     end
 end,function (key,down)
