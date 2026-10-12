@@ -8,8 +8,6 @@ local deg = 1.57
 local tar = nil
 local speed = 1
 
-local oneP = love.math.random(1,9)
-
 return {function (dt,_all)
     all = _all
     tim = tim + dt
@@ -59,21 +57,21 @@ return {function (dt,_all)
         love.graphics.circle("fill",love.width/2+dis*math.cos(tar),love.height/2-dis*math.sin(tar),love.width/80)
     elseif tim < 93 then
         love.graphics.setColor(1,1,1,tim-91)
-        local amt = oneP
+        local amt = 0
         for v,o in pairs(aud) do
             if o[2] > 50 then
-                amt = amt + 10
+                amt = amt + 1
             end
         end
-        love.graphics.printCentered(amt.."% "..(amt > 50 and ":)" or ":("),love.width/2,love.height/2,2,2)
+        love.graphics.printCentered(amt.."/10 "..(amt >= 5 and ":)" or ":("),love.width/2,love.height/2,2,2)
     else
-        local amt = oneP
+        local amt = 0
         for v,o in pairs(aud) do
-            if o[2] > 50 then
-                amt = amt + 10
+            if o[2] >= 50 then
+                amt = amt + 1
             end
         end
-        if amt > 50 then
+        if amt >= 5 then
             return "house/start"
         else
             return "mainmenu"

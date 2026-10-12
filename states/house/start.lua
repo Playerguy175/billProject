@@ -2,7 +2,7 @@ local all = nil
 local tim = 0
 
 local arr = love.graphics.newImage("arrow.png")
-local dir = {"Committee","Ammend","Floor","Vote"}
+local dir = {"Committee","Floor","Vote"}
 
 return {function (dt,_all)
     all = _all
@@ -26,11 +26,9 @@ return {function (dt,_all)
     love.graphics.printCentered(dir[1],love.width/2,love.height/2-love.width*3/16,2,2)
     love.graphics.printCentered(dir[2],love.width/2,love.height/2-love.width/16,2,2)
     love.graphics.printCentered(dir[3],love.width/2,love.height/2+love.width/16,2,2)
-    love.graphics.printCentered(dir[4],love.width/2,love.height/2+love.width*3/16,2,2)
 
     love.graphics.draw(arr,love.width/2,love.height/2 - love.width/8,0,love.height/1000,love.height/1000,arr:getWidth()/2,arr:getHeight()/2)
     love.graphics.draw(arr,love.width/2,love.height/2,0,love.height/1000,love.height/1000,arr:getWidth()/2,arr:getHeight()/2)
-    love.graphics.draw(arr,love.width/2,love.height/2 + love.width/8,0,love.height/1000,love.height/1000,arr:getWidth()/2,arr:getHeight()/2)
 end,function (down,key)
     
 end}
