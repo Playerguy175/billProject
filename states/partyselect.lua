@@ -28,8 +28,7 @@ end,function (key,down)
             love.beep()
         elseif key == "return" then
             all.party = dem and "Democrat" or "Republican"
-            return "president"
-            --return "houseselect"
+            return "houseselect"
         end
     end
 end}
