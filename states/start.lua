@@ -14,7 +14,12 @@ The current president is a ]]..president..[[.||||||||||||||||||
 The House is ]]..(houseRep > 50 and houseRep.."% Republican" or (100-houseRep).."% Democrat")..[[.||||||||||||||||||
 The Senate is ]]..(senateRep > 50 and senateRep.."% Republican" or (100-senateRep).."% Democrat")..[[.||||||||||||||||||
 
-Good luck.||||||||||||||||||
+Some Tips:||||||||||||||||||
+    -People tend to vote for their party.||||||||||||||||||
+    -Split-Houses are near-impossible to pass bills.||||||||||||||||||
+    -Anything is possible.||||||||||||||||||
+
+Good luck.||||||||||||||||||||||||||||||||||||
 ]]
 
 local lastLen = 0
